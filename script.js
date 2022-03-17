@@ -1,3 +1,30 @@
+
+//Get API key from
+const api = {
+  key: 'd59885c116c94800136f7045f74ff77e',
+  baseUrl: 'https://home.openweathermap.org/api_keys'
+}
+
+const search = document.querySelector(".search")
+search.addEventListener('keypress', setQuery);
+
+function setQuery(evt){
+  if (evt.keyCode === 13){
+    getResults(search.value);
+    console.log(search.value);
+  }
+}
+
+function getResults(query){
+  fetch(`${api.baseUrl}weather?q=${query}&units=metric&APPID=${api.key}`)
+  .then(weather => {
+    return weather.json();
+  }).then(displayResults);
+}
+
+function displayResults(weather){
+  console.log(weather);
+}
 // GIVEN a weather dashboard with form inputs
 var card_1 = document.querySelector(".card-1")
 var card_2 = document.querySelector(".card-2")
