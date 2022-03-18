@@ -1,69 +1,92 @@
+const search = document.querySelector(".search");
+const searchBtn = document.querySelector("#searchBtn");
+const dashBoard = document.querySelector("#dashBoard");
+const fiveDay = document.querySelector("#fiveDay");
 
-
-
-
-function generateWeather(){
-
+function generateWeather(city) {
   //Get API key from weather api sight
-  const key = 'd59885c116c94800136f7045f74ff77e'
-  const baseUrl = 'https://home.openweathermap.org/api_keys'
-
+  const key = "d59885c116c94800136f7045f74ff77e";
+  const baseUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=imperial`;
 
   fetch(baseUrl)
-  .then(function(response){
-    return response.json();
-  });
-  .then(function(data){
-    var weatherArray = data
-  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      const fiveDayUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude={part}&appid=${key}&units=imperial`;
+      fetch(fiveDayUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (fiveDayData) {
+
+           dashBoard.innerHTML = `  
+                    <h1 class="display-5 fw-bold"></h1>
+                    <div class="city">City:<span>${data.name}</span></div>
+                    <div class="date">Date:<span>${moment(data.dt,'X').format("MM/DD/YYYY")}</span></div>
+                    <div class="temp">Temp:<span>${data.main.temp}</span></div>
+                    <div class="wind">Wind:<span>${data.wind.speed}</span></div>
+                    <div class="humidity">Humidity:<span>${data.main.humidity}</span></div>
+                    <div class="uv-index">UV Index:<span>${fiveDayData.current.uvi}</span></div>`;
+
+          console.log(fiveDayData);
+
+          fiveDay.innerHTML = ` <div class="col-sm-2">
+                    <Section class="container-0">
+                        <main>
+                            <div class="date">Date:<span>${moment(fiveDayData.daily[1].dt,'X').format("MM/DD/YYYY")}</span></div>
+                            <div class="temp">Temp:<span>${fiveDayData.daily[1].temp.day}</span></div>
+                            <div class="wind">Wind:<span>${fiveDayData.daily[1].wind_speed}</span></div>
+                            <div class="humidity">Humidity:<span>${fiveDayData.daily[1].humidity}</span></div>
+                        </main>
+                    </Section>
+                </div>
+                <div class="col-sm-2">
+                    <Section class="container-0">
+                        <main>
+                            <div class="date">Date: <span>${moment(fiveDayData.daily[2].dt,'X').format("MM/DD/YYYY")}</span></div>
+                            <div class="temp">Temp:<span>${fiveDayData.daily[2].temp.day}</span></div>
+                            <div class="wind">Wind:<span>${fiveDayData.daily[2].wind_speed}</span></div>
+                            <div class="humidity">Humidity:<span>${fiveDayData.daily[2].humidity}</span></div>
+                        </main>
+                </div>
+                <div class="col-sm-2">
+                    <Section class="container-0">
+                        <main>
+                            <div class="date">Date:<span>${moment(fiveDayData.daily[3].dt,'X').format("MM/DD/YYYY")}</span></div>
+                            <div class="temp">Temp:<span>${fiveDayData.daily[3].temp.day}</span></div>
+                            <div class="wind">Wind:<span>${fiveDayData.daily[3].wind_speed}</span></div>
+                            <div class="humidity">Humidity:<span>${fiveDayData.daily[3].humidity}</span></div>
+                        </main>
+                    </Section>
+                </div>
+                <div class="col-sm-2">
+                    <Section class="container-0">
+                        <main>
+                             <div class="date">Date:<span>${moment(fiveDayData.daily[4].dt,'X').format("MM/DD/YYYY")}</span></div>
+                            <div class="temp">Temp:<span>${fiveDayData.daily[4].temp.day}</span></div>
+                            <div class="wind">Wind:<span>${fiveDayData.daily[4].wind_speed}</span></div>
+                            <div class="humidity">Humidity:<span>${fiveDayData.daily[4].humidity}</span></div>
+                        </main>
+                    </Section>
+                </div>
+                <div class="col-sm-2">
+                    <Section class="container-0">
+                        <main>
+                            <div class="date">Date:<span>${moment(fiveDayData.daily[5].dt,'X').format("MM/DD/YYYY")}</span></div>
+                            <div class="temp">Temp:<span>${fiveDayData.daily[5].temp.day}</span></div>
+                            <div class="wind">Wind:<span>${fiveDayData.daily[5].wind_speed}</span></div>
+                            <div class="humidity">Humidity:<span>${fiveDayData.daily[5].humidity}</span></div>
+                        </main>
+                    </Section>
+                </div>`;
+        });
+    });
 }
 
-function getResults(query){
-  fetch(`${api.baseUrl}weather?q=${query}&units=metric&APPID=${api.key}`)
-  .then(weather => {
-    return weather.json();
-  }).then(displayResults);
-}
+searchBtn.addEventListener("click", function () {
+  generateWeather(search.value);
+});
 
-function displayResults(weather){
-  console.log(weather);
-}
-// // GIVEN a weather dashboard with form inputs
-// var card_1 = document.querySelector(".card-1")
-// var card_2 = document.querySelector(".card-2")
-// var card_3 = document.querySelector(".card-3")
-// var card_4 = document.querySelector(".card-4")
-// var btn = onClick(btn);
-// // WHEN I search for a city
-
-// function citySearch() {
-
-//   }
-// // THEN I am presented with current and future conditions for that city and that city is added to the search history
-// function furtureConditions() { 
-    
-//  }
-// // WHEN I view current weather conditions for that city
-// function veiwWeatherConditions() {
-
-// }
-// // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// fetch api function
-// // WHEN I view the UV index
-// function veiwUVIndex() {}
-// // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-// function colorCode(){
-
-// }
-// // WHEN I view future weather conditions for that city
-// function future() {
-
-// }
-// // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-// function fiveDayForcast(){
-
-// }
-// // WHEN I click on a city in the search history
-// btn.document.onClick
-// // THEN I am again presented with current and future conditions for that city
-// future() 
