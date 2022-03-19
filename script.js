@@ -2,6 +2,11 @@ const search = document.querySelector(".search");
 const searchBtn = document.querySelector("#searchBtn");
 const dashBoard = document.querySelector("#dashBoard");
 const fiveDay = document.querySelector("#fiveDay");
+const storage = document.querySelector("#storage");
+const text = document.querySelector("#text");
+const storageBtn = document.querySelector("#storageBtn");
+const storageInput = localStorage.getItem('textInput')
+
 
 function generateWeather(city) {
   //Get API key from weather api sight
@@ -89,4 +94,17 @@ function generateWeather(city) {
 searchBtn.addEventListener("click", function () {
   generateWeather(search.value);
 });
+
+
+if (storageInput) {
+  text.textContent = storageInput;
+}
+storage.addEventListener("input", (cityName) => {
+  text.textContent = cityName.name;
+});
+const saveToLocalStorage = () => {
+  localStorage.setItem("textInput", textContent);
+};
+storageBtn.addEventListener("click", saveToLocalStorage);
+
 
