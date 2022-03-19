@@ -7,6 +7,8 @@ const text = document.querySelector("#text");
 const storageBtn = document.querySelector("#storageBtn");
 const storageInput = localStorage.getItem('textInput')
 
+const city = [];
+
 
 function generateWeather(city) {
   //Get API key from weather api sight
@@ -29,7 +31,7 @@ function generateWeather(city) {
 
            dashBoard.innerHTML = `  
                     <h1 class="display-5 fw-bold"></h1>
-                    <div class="city">City:<span>${data.name}</span></div>
+                    <div class="city location">City:<span>${data.name}</span></div>
                     <div class="date">Date:<span>${moment(data.dt,'X').format("MM/DD/YYYY")}</span></div>
                     <div class="temp">Temp:<span>${data.main.temp}</span></div>
                     <div class="wind">Wind:<span>${data.wind.speed}</span></div>
@@ -105,6 +107,16 @@ storage.addEventListener("input", (cityName) => {
 const saveToLocalStorage = () => {
   localStorage.setItem("textInput", textContent);
 };
+
+const createCityElement = (cityName) => {
+    const cityBtn = document.createCityElement('button');
+    const cityBtnName = document.createElement('h2')
+
+    cityBtnName.innerText = "city name: " + cityName
+
+    cityBtn.append(cityBtnName);
+    cityContainer.appendChild(cityBtn);
+}
 storageBtn.addEventListener("click", saveToLocalStorage);
 
 
