@@ -17,10 +17,11 @@ Presented with current and future conditions for that city and that city is adde
 THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the With UV index user is presented with a color that indicates whether the conditions are favorable, moderate, or severe
 Future weather conditions for that city are displayed
 A presentetation of a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-## Screenshots
+## Screenshots and links
 
 ![](./img/screen-shot.png)
-
+<https://github.com/jayBassMan/Weather-Dashboard>
+<https://jaybassman.github.io/Weather-Dashboard/>
 ## Contributions
 
 Worked with:
