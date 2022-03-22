@@ -14,32 +14,25 @@
 
 <body>
 
-    <div class="p-5 m-4 bg-dark bg-gradient rounded-3 text-center text-white">
-        <div class="container-fluid">
-            <h1 class="display-5 fw-bold">Weather Dashboard</h1>
+    <div class="p-5 m-4 bg-gradient bg-dark rounded-3 text-center text-white">
+        <div class=" container-0 container-fluid">
+            <h1 class="display-5 fw-bold">Jonathan's Weather Dashboard</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2 ">
 
             <header>
-                <input type="text" autocomplete="off" class="search form-control storage ms-2" placeholder="Search for a city">
-                <button id="searchBtn" class="btn btn-danger m-2">Search</button>
+                <input type="text" autocomplete="off" class="search form-control text-white storage ms-3" placeholder="Search for a city">
+                <button id="searchBtn" class="btn bg-gradient bg-dark m-2 ms-3 text-white">Search</button>
             </header>            <!-- Bootstrap list group -->
-            <div class="list-group">
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1">City</button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-                <button id="storageBtn" class="btn btn-danger ms-3 mb-1"><p id="text"></p></button>
-            </div>
+           <div id="city-list">
+
+           </div>
             <!-- end of list group -->
         </div>
         <div class="col-sm-10 ">
-            <div class="p-5 mb-4 me-4 container-0 rounded-3 text-center text-white">
+            <div class="p-5 mb-4 me-4 container-1 rounded-3 text-center text-white city date temp wind humidity span">
                 <div  id="dashBoard" class="container-fluid">
                  
                 </div>
