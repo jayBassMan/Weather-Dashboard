@@ -20,6 +20,7 @@ A presentetation of a 5-day forecast that displays the date, an icon representat
 ## Screenshots and links
 
 ![](./img/screen-shot.png)
+![](./img/full-page-screenshot.png)
 <https://github.com/jayBassMan/Weather-Dashboard>
 <https://jaybassman.github.io/Weather-Dashboard/>
 ## Contributions
